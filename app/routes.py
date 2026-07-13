@@ -13,8 +13,9 @@ def get_tasks():
 
 @bp.route("/tasks", methods=["POST"])
 def create_task():
-    pass
-
+    content = request.json.get("content")
+    if not content:
+        return jsonify({"error": "Content is required"}), 400
 
 @bp.route("/tasks/<int:task_id>", methods=["PATCH"])
 def update_task(task_id):
